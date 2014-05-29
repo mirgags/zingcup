@@ -1,0 +1,82 @@
+.Ublink {
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: Ublink;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: red;
+    
+}
+ 
+@-webkit-keyframes Ublink {
+    0% {
+        opacity: 0;
+    }
+    24% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.Sblink {
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: Sblink;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: white;
+}
+ 
+@-webkit-keyframes Sblink {
+    0% {
+        opacity: 0;
+    }
+    49% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.Ablink {
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: Ablink;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: blue
+}
+ 
+@-webkit-keyframes Ablink {
+    0% {
+        opacity: 0;
+    }
+    74% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

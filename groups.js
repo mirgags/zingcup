@@ -141,36 +141,58 @@ function writeGroup(group) {
     };
 };
 
+function createMatches(matches) {
+    var match = {};
+    var tempMatches = [];
+    var addMatch = false;
+    for(i=0;i<teams.length;i++) {
+        for(j=0;j<teams.length;j++) {
+            if(teams[i]['group'] === teams[j]['group']) {
+                if(teams[i]['id'] !== teams[j]['id']) {
+                    if(matches.length === 0) {
+                        console.log('empty entry');
+                        match[teams[i]['id']] = 0;
+                        match[teams[j]['id']] = 0;
+                        addMatch = true;
+                    }
+                    else {
+                        addMatch = true;
+                        for(k=0;k<matches.length;k++) {
+                            if(teams[j]['id'] in matches[k] && teams[i]['id'] in matches[k]) {
+                                addMatch = false;
+                            };
+                        };
+                    };
+                };
+            };
+            if(addMatch === true) {
+                match[teams[i]['id']] = 0;
+                match[teams[j]['id']] = 0;
+                matches.push(match);
+                console.log('added:'+teams[i]['id']+','+teams[j]['id']);
+                addMatch = false;
+            };
+        };
+    };
+    for(z=0;z<matches.length;z++){console.log(matches[z])};
+    return matches;
+};
+
 var matches = [
     {usa:3,gha:0},{ger:0,por:0},{usa:3,por:0},{ger:0,gha:0},
     {usa:3,ger:0},{gha:1,por:1}
 ];
-
-/*
-var matches = [];
-
-for(key in teams) {
-    for(key2 in teams) {
-        for(i=0;i<matches.length;i++) {
-            if(teams[key]['group'] === teams[key2]['group'] &&
-                !(key in matches[i]) &&
-                !(key2 in matches[i])) {
-                matches.push({key:0,
-                              key2:0});
-            };
-        };
-    };
-};
-*/
-     
+//var matches = [];
+//var match = {};
+matches = createMatches(matches);
 
 var groupList = ['a','b','c','d','e','f','g','h'];
 
 for(i=0;i<groupList.length;i++) {
     var group = {};
-    for(key in teams['group']) {
-        if(groupList[i] === key) {
-            group[teams['id']] = null;
+    for(j=0;j<teams.length;j++) {
+        if(groupList[i] === teams[j].group) {
+            group[teams[j].id] = {matches:[],points:0,place:null,goals:0,goalDiff:0,id:teams[j].id};
         };
     };
     group = refreshData(group);

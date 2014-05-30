@@ -142,39 +142,46 @@ function writeGroup(group) {
 };
 
 function createMatches(matches) {
-    var match = {};
+    var match;
     var tempMatches = [];
+    var matchStr;
     var addMatch = false;
     for(i=0;i<teams.length;i++) {
         for(j=0;j<teams.length;j++) {
             if(teams[i]['group'] === teams[j]['group']) {
                 if(teams[i]['id'] !== teams[j]['id']) {
                     if(matches.length === 0) {
-                        console.log('empty entry');
-                        match[teams[i]['id']] = 0;
-                        match[teams[j]['id']] = 0;
+//                        console.log('empty entry');
                         addMatch = true;
-                    }
+                                            }
                     else {
                         addMatch = true;
                         for(k=0;k<matches.length;k++) {
-                            if(teams[j]['id'] in matches[k] && teams[i]['id'] in matches[k]) {
+//                            console.log('match # ' +k);
+//                            console.log(JSON.stringify(matches[k]));
+                            if(teams[j]['id'] in matches[k] && 
+                               teams[i]['id'] in matches[k]) {
                                 addMatch = false;
                             };
                         };
                     };
+                    if(addMatch === true) {
+                        matchStr = '{\"' +teams[i]['id'] + '\":0,\"' +
+                            teams[j]['id'] + '\":0}';
+//                        console.log('up next: ' + matchStr);
+                        matches.push(JSON.parse(matchStr));
+                        //matches[matches.length][teams[i]] = 0;
+                        //matches[matches.length][teams[j]] = 0;
+                        console.log('added:'+teams[i]['id']+','+
+                                            teams[j]['id']);
+                        addMatch = false;
+                    };
                 };
             };
-            if(addMatch === true) {
-                match[teams[i]['id']] = 0;
-                match[teams[j]['id']] = 0;
-                matches.push(match);
-                console.log('added:'+teams[i]['id']+','+teams[j]['id']);
-                addMatch = false;
-            };
         };
+//        for(z=0;z>matches.length;z++){JSON.stringify(matches[z])};
     };
-    for(z=0;z<matches.length;z++){console.log(matches[z])};
+//    for(z=0;z<matches.length;z++){console.log(matches[z])};
     return matches;
 };
 
@@ -185,6 +192,11 @@ var matches = [
 //var matches = [];
 //var match = {};
 matches = createMatches(matches);
+var count = 0;
+for(i=0;i<matches.length;i++) {
+    count += 1;
+    console.log('Match # ' +count+ JSON.stringify(matches[i]));
+};
 
 var groupList = ['a','b','c','d','e','f','g','h'];
 
@@ -197,7 +209,9 @@ for(i=0;i<groupList.length;i++) {
     };
     group = refreshData(group);
     group = groupSorter(group);
+/*
     writeGroup(group);
+*/
 };
 
 

@@ -1,4 +1,5 @@
-function getMatches(group) {
+function getMatches(group, matches) {
+    console.log('in getMatches()');
     for(key in group) {
         for(i=0; i < matches.length; i++) {
             if(key in matches[i]) {
@@ -120,8 +121,8 @@ function groupSorter(group) {
     return group;
 };
 
-function refreshData(group) {
-    group = getMatches(group);
+function refreshData(group, matches) {
+    group = getMatches(group, matches);
     for(key in group) {
         group[key]['points'] = pointTotal(group[key]);
         group[key]['goals'] = goalsScored(group[key]); 
@@ -151,14 +152,11 @@ function createMatches(matches) {
             if(teams[i]['group'] === teams[j]['group']) {
                 if(teams[i]['id'] !== teams[j]['id']) {
                     if(matches.length === 0) {
-//                        console.log('empty entry');
                         addMatch = true;
                                             }
                     else {
                         addMatch = true;
                         for(k=0;k<matches.length;k++) {
-//                            console.log('match # ' +k);
-//                            console.log(JSON.stringify(matches[k]));
                             if(teams[j]['id'] in matches[k] && 
                                teams[i]['id'] in matches[k]) {
                                 addMatch = false;
@@ -168,10 +166,7 @@ function createMatches(matches) {
                     if(addMatch === true) {
                         matchStr = '{\"' +teams[i]['id'] + '\":0,\"' +
                             teams[j]['id'] + '\":0}';
-//                        console.log('up next: ' + matchStr);
                         matches.push(JSON.parse(matchStr));
-                        //matches[matches.length][teams[i]] = 0;
-                        //matches[matches.length][teams[j]] = 0;
                         console.log('added:'+teams[i]['id']+','+
                                             teams[j]['id']);
                         addMatch = false;
@@ -179,10 +174,23 @@ function createMatches(matches) {
                 };
             };
         };
-//        for(z=0;z>matches.length;z++){JSON.stringify(matches[z])};
     };
-//    for(z=0;z<matches.length;z++){console.log(matches[z])};
     return matches;
+};
+
+function getGroup(groupLetter) {
+    var group = {};
+    for(j=0;j<teams.length;j++) {
+        if(groupLetter === teams[j].group) {
+            group[teams[j].id] = {matches:[],points:0,place:null,goals:0,goalDiff:0,id:teams[j].id};
+            console.log('group ' + groupLetter + ':' + teams[j].id);
+        };
+    };
+    console.log(JSON.stringify(group));
+    for(key in group) {
+        console.log(JSON.stringify(group[key]));
+    };
+    return group;
 };
 
 var matches = [
@@ -198,24 +206,46 @@ for(i=0;i<matches.length;i++) {
     console.log('Match # ' +count+ JSON.stringify(matches[i]));
 };
 
+var group;
 var groupList = ['a','b','c','d','e','f','g','h'];
+console.log(JSON.stringify(matches));
 
+/*
+//THIS DOESNT WORK
+for(i=0;i<groupList.length;i++) {
+    group = getGroup(groupList[i]);
+    group = refreshData(group, matches);
+    group = groupSorter(group);
+    writeGroup(group);
+};
+*/
+
+//THIS WORKS
+group = getGroup('a');
+group = refreshData(group, matches);
+group = groupSorter(group);
+writeGroup(group);
+group = getGroup('b');
+group = refreshData(group, matches);
+group = groupSorter(group);
+writeGroup(group);
+
+/*
 for(i=0;i<groupList.length;i++) {
     var group = {};
     for(j=0;j<teams.length;j++) {
         if(groupList[i] === teams[j].group) {
             group[teams[j].id] = {matches:[],points:0,place:null,goals:0,goalDiff:0,id:teams[j].id};
+            console.log('group ' + groupList[i] + ':' + teams[j].id);
         };
     };
-    group = refreshData(group);
-    group = groupSorter(group);
-/*
-    writeGroup(group);
-*/
+    console.log(JSON.stringify(group));
+    for(key in group) {
+        console.log(JSON.stringify(group[key]));
+    };
 };
 
 
-/*
 var groupG = {ger:null,por:null,gha:null,usa:null};
     for(key in groupG) {
         groupG[key] = {matches:[],points:0,place:null,goals:0,goalDiff:0,id:key}

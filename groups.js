@@ -1,7 +1,9 @@
 function getMatches(group, matches, roundNum) {
     roundDict = {'1':16,'2':32,'3':48,'4':56,'5':60,'6':62,'7':63};
     console.log('in getMatches()');
+    console.log(JSON.stringify(group));
     for(key in group) {
+        console.log('finding ' + key + ' matches');
         for(i=0; i < roundDict[roundNum]; i++) {
             if(key in matches[i]) {
                 var theMatch = {};
@@ -123,6 +125,7 @@ function groupSorter(group) {
 };
 
 function refreshData(group, matches, round) {
+    console.log('refreshdata group: ' + JSON.stringify(group));
     for(key in group) {
         group[key]['matches'] = [];
     };
@@ -213,7 +216,7 @@ function getGroup(groupLetter) {
         if(groupLetter === teams[j].group) {
             group[teams[j].id] = {matches:[],points:0,place:null,
                                   goals:0,goalDiff:0,id:teams[j].id};
-            console.log('group ' + groupLetter + ':' + teams[j].id);
+            console.log('getGroup ' + groupLetter + ':' + teams[j].id);
         };
     };
     console.log(JSON.stringify(group));
@@ -250,19 +253,21 @@ for(i=0;i<matches.length;i++) {
 };
 
 var group;
-var groupList = ['a','b','c','d','e','f','g','h'];
-var groupDict = {};
+var groupDict = {'a':null,'b':null,'c':null,'d':null,
+                 'e':null,'f':null,'g':null,'h':null};
 console.log(JSON.stringify(matches));
 
-/*
 //THIS DOESNT WORK
-for(i=0;i<groupList.length;i++) {
-    groupDict[groupList[i]] = getGroup(groupList[i]);
-    groupDict[groupList[i]] = refreshData(groupDict[groupList[i]], matches, '3');
-    groupDict[groupList[i]] = groupSorter(groupDict[groupList[i]]);
-    writeGroup(groupList[i]);
+for(key in groupDict) {
+    groupDict[key] = getGroup(key);
+    console.log('nonfunc group: ' + JSON.stringify(groupDict[key]));
+    groupDict[key] = refreshData(groupDict[key], matches, '3');
+    groupDict[key] = groupSorter(groupDict[key]);
+    console.log(JSON.stringify(groupDict));
+    writeGroup(groupDict[key]);
 };
-*/
+
+/*
 for(i=0;i<15;i++){matches.push({})};
 console.log('matches length: ' + matches.length);
 //THIS WORKS
@@ -270,7 +275,7 @@ group = getGroup('a');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -279,14 +284,14 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[49][key] = 0;
     }
-*/
+
 };
 
 group = getGroup('b');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -295,14 +300,14 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[48][key] = 0;
     }
-*/
+
 };
 
 group = getGroup('c');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -311,14 +316,14 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[51][key] = 0;
     }
-*/
+
 };
 
 group = getGroup('d');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -327,14 +332,14 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[50][key] = 0;
     }
-*/
+
 };
 
 group = getGroup('e');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -343,14 +348,14 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[53][key] = 0;
     }
-*/
+
 };
 
 group = getGroup('f');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -359,14 +364,14 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[52][key] = 0;
     }
-*/
+
 };
 
 group = getGroup('g');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -375,14 +380,14 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[55][key] = 0;
     }
-*/
+
 };
 
 group = getGroup('h');
 group = refreshData(group, matches, '3');
 group = groupSorter(group);
 writeGroup(group);
-/*
+
 for(key in group) {
     groupDict[key] = group[key];
     if(groupDict[key]['place'] === 1) {
@@ -391,7 +396,7 @@ for(key in group) {
     if(groupDict[key]['place'] === 2) {
         matches[54][key] = 0;
     }
-*/
+
 };
 var overallGroup = refreshData(overallGroup, matches, '4');
 overallGroup = overallSort(groupDict);
@@ -400,3 +405,4 @@ for(key in overallGroup) {
     console.log('overall key: ' + key);
     console.log(key + 'finished' + overallGroup[key]['place']);
 };
+*/

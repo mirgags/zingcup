@@ -99,7 +99,7 @@ window.onload=function() {
   zingchart.render({
     id: 'theChart',
     height: 450,
-    width: 600,
+  
     data: theChart
   })
 };

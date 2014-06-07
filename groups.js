@@ -1,22 +1,25 @@
 function getMatches(group, matches, roundNum) {
+    var group = group;
+    var matches = matches;
+    var roundNum = roundNum;
     roundDict = {'1':16,'2':32,'3':48,'4':56,'5':60,'6':62,'7':63};
     console.log('in getMatches()');
     console.log(JSON.stringify(group));
-    for(key in group) {
-        console.log('finding ' + key + ' matches');
+    for(getMatchKey in group) {
+        console.log('finding ' + getMatchKey + ' matches');
         for(i=0; i < roundDict[roundNum]; i++) {
-            if(key in matches[i]) {
+            if(getMatchKey in matches[i]) {
                 var theMatch = {};
                 for(matchKey in matches[i]) {
-                    if(key === matchKey) {
-                        theMatch['goalsFor'] = matches[i][key];
+                    if(getMatchKey === matchKey) {
+                        theMatch['goalsFor'] = matches[i][getMatchKey];
                     }
                     else {
                         theMatch['goalsAgainst'] = matches[i][matchKey];
                         theMatch['opponent'] = matchKey;
                     };
                 };
-            group[key]['matches'].push(theMatch);
+            group[getMatchKey]['matches'].push(theMatch);
             };
         };
     };
@@ -62,9 +65,9 @@ function goalDifference(team) {
 
 function groupSorter(group) {
     var orderedList = [];
-    for(key in group) {
-        orderedList.push(group[key]);
-        console.log(group[key].id);
+    for(sorterKey in group) {
+        orderedList.push(group[sorterKey]);
+        console.log(group[sorterKey].id);
     };
     orderedList = orderedList.sort(function (a,b) {
         console.log('in points');
@@ -125,27 +128,30 @@ function groupSorter(group) {
 };
 
 function refreshData(group, matches, round) {
+    var group = group;
+    var matches = matches;
+    var round = round;
     console.log('refreshdata group: ' + JSON.stringify(group));
-    for(key in group) {
-        group[key]['matches'] = [];
+    for(groupKey in group) {
+        group[groupKey]['matches'] = [];
     };
     group = getMatches(group, matches, round);
-    for(key in group) {
-        group[key]['points'] = pointTotal(group[key]);
-        group[key]['goals'] = goalsScored(group[key]); 
-        group[key]['goalDiff'] = goalDifference(group[key]);
+    for(groupKey in group) {
+        group[groupKey]['points'] = pointTotal(group[groupKey]);
+        group[groupKey]['goals'] = goalsScored(group[groupKey]); 
+        group[groupKey]['goalDiff'] = goalDifference(group[groupKey]);
     };
     return group;
 };
 
 function writeGroup(group) {
-    for(key in group) {
-        for(i=0; i < group[key]['matches'].length; i++) {
-            document.writeln(key+' v ' +group[key]['matches'][i]['opponent']+' - ');
-            document.writeln('scored: ' +group[key]['matches'][i]['goalsFor']);
-            document.writeln('allowed: '+group[key]['matches'][i]['goalsAgainst'] + '<br>');
+    for(writeKey in group) {
+        for(i=0; i < group[writeKey]['matches'].length; i++) {
+            document.writeln(writeKey+' v ' +group[writeKey]['matches'][i]['opponent']+' - ');
+            document.writeln('scored: ' +group[writeKey]['matches'][i]['goalsFor']);
+            document.writeln('allowed: '+group[writeKey]['matches'][i]['goalsAgainst'] + '<br>');
             };
-        document.writeln(key+' total points: ' + group[key]['points'] + '<br>' + key + ' finished in position: ' + group[key]['place'] + "<br><br>");
+        document.writeln(writeKey+' total points: ' + group[writeKey]['points'] + '<br>' + writeKey + ' finished in position: ' + group[writeKey]['place'] + "<br><br>");
     };
 };
 
@@ -212,6 +218,7 @@ function overallSort(group) {
 
 function getGroup(groupLetter) {
     var group = {};
+    var groupLetter = groupLetter;
     for(j=0;j<teams.length;j++) {
         if(groupLetter === teams[j].group) {
             group[teams[j].id] = {matches:[],points:0,place:null,
@@ -219,10 +226,10 @@ function getGroup(groupLetter) {
             console.log('getGroup ' + groupLetter + ':' + teams[j].id);
         };
     };
-    console.log(JSON.stringify(group));
-    for(key in group) {
-        console.log(JSON.stringify(group[key]));
+/*    for(key in group) {
+        console.log('key: ' + key + ": " + JSON.stringify(group[key]));
     };
+*/
     return group;
 };
 
@@ -259,11 +266,13 @@ console.log(JSON.stringify(matches));
 
 //THIS DOESNT WORK
 for(key in groupDict) {
+    console.log(key);
     groupDict[key] = getGroup(key);
     console.log('nonfunc group: ' + JSON.stringify(groupDict[key]));
     groupDict[key] = refreshData(groupDict[key], matches, '3');
     groupDict[key] = groupSorter(groupDict[key]);
     console.log(JSON.stringify(groupDict));
+    document.writeln('Group ' + key + '<br>');
     writeGroup(groupDict[key]);
 };
 

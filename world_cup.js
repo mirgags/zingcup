@@ -1,36 +1,36 @@
 var teams = [
-    {"id":"gre","title":"Greece","code":"GRE","group":"c"},
-    {"id":"rus","title":"Russia","code":"RUS","group":"h"},
-    {"id":"ned","title":"Netherlands","code":"NED","group":"b"},
-    {"id":"ger","title":"Germany","code":"GER","group":"g"},
-    {"id":"por","title":"Portugal","code":"POR","group":"g"},
-    {"id":"esp","title":"Spain","code":"ESP","group":"b"},
-    {"id":"ita","title":"Italy","code":"ITA","group":"d"},
-    {"id":"cro","title":"Croatia","code":"CRO","group":"a"},
-    {"id":"fra","title":"France","code":"FRA","group":"e"},
-    {"id":"eng","title":"England","code":"ENG","group":"d"},
-    {"id":"sui","title":"Switzerland","code":"SUI","group":"e"},
-    {"id":"bel","title":"Belgium","code":"BEL","group":"h"},
-    {"id":"bih","title":"Bosnia-Herzegovina","code":"BIH","group":"f"},
-    {"id":"alg","title":"Algeria","code":"ALG","group":"h"},
-    {"id":"civ","title":"C\u00f4te d'Ivoire","code":"CIV","group":"c"},
-    {"id":"gha","title":"Ghana","code":"GHA","group":"g"},
-    {"id":"cmr","title":"Cameroon","code":"CMR","group":"a"},
-    {"id":"nga","title":"Nigeria","code":"NGA","group":"f"},
-    {"id":"mex","title":"Mexico","code":"MEX","group":"a"},
-    {"id":"usa","title":"United States","code":"USA","group":"g"},
-    {"id":"hon","title":"Honduras","code":"HON","group":"e"},
-    {"id":"crc","title":"Costa Rica","code":"CRC","group":"d"},
-    {"id":"arg","title":"Argentina","code":"ARG","group":"f"},
-    {"id":"bra","title":"Brazil","code":"BRA","group":"a"},
-    {"id":"chi","title":"Chile","code":"CHI","group":"b"},
-    {"id":"uru","title":"Uruguay","code":"URU","group":"d"},
-    {"id":"col","title":"Colombia","code":"COL","group":"c"},
-    {"id":"ecu","title":"Ecuador","code":"ECU","group":"e"},
-    {"id":"aus","title":"Australia","code":"AUS","group":"b"},
-    {"id":"jpn","title":"Japan","code":"JPN","group":"c"},
-    {"id":"kor","title":"South Korea","code":"KOR","group":"h"},
-    {"id":"irn","title":"Iran","code":"IRN","group":"f"}]
+    {"id":"gre","title":"Greece","code":"GRE","group":"c",'ranking':12},
+    {"id":"rus","title":"Russia","code":"RUS","group":"h",'ranking':19},
+    {"id":"ned","title":"Netherlands","code":"NED","group":"b",'ranking':15},
+    {"id":"ger","title":"Germany","code":"GER","group":"g",'ranking':2},
+    {"id":"por","title":"Portugal","code":"POR","group":"g",'ranking':4},
+    {"id":"esp","title":"Spain","code":"ESP","group":"b",'ranking':1},
+    {"id":"ita","title":"Italy","code":"ITA","group":"d",'ranking':9},
+    {"id":"cro","title":"Croatia","code":"CRO","group":"a",'ranking':18},
+    {"id":"fra","title":"France","code":"FRA","group":"e",'ranking':17},
+    {"id":"eng","title":"England","code":"ENG","group":"d",'ranking':10},
+    {"id":"sui","title":"Switzerland","code":"SUI","group":"e",'ranking':6},
+    {"id":"bel","title":"Belgium","code":"BEL","group":"h",'ranking':11},
+    {"id":"bih","title":"Bosnia-Herzegovina","code":"BIH","group":"f",'ranking':21},
+    {"id":"alg","title":"Algeria","code":"ALG","group":"h",'ranking':22},
+    {"id":"civ","title":"C\u00f4te d'Ivoire","code":"CIV","group":"c",'ranking':23},
+    {"id":"gha","title":"Ghana","code":"GHA","group":"g",'ranking':37},
+    {"id":"cmr","title":"Cameroon","code":"CMR","group":"a",'ranking':56},
+    {"id":"nga","title":"Nigeria","code":"NGA","group":"f",'ranking':44},
+    {"id":"mex","title":"Mexico","code":"MEX","group":"a",'ranking':20},
+    {"id":"usa","title":"United States","code":"USA","group":"g",'ranking':13},
+    {"id":"hon","title":"Honduras","code":"HON","group":"e",'ranking':33},
+    {"id":"crc","title":"Costa Rica","code":"CRC","group":"d",'ranking':28},
+    {"id":"arg","title":"Argentina","code":"ARG","group":"f",'ranking':5},
+    {"id":"bra","title":"Brazil","code":"BRA","group":"a",'ranking':3},
+    {"id":"chi","title":"Chile","code":"CHI","group":"b",'ranking':14},
+    {"id":"uru","title":"Uruguay","code":"URU","group":"d",'ranking':7},
+    {"id":"col","title":"Colombia","code":"COL","group":"c",'ranking':8},
+    {"id":"ecu","title":"Ecuador","code":"ECU","group":"e",'ranking':26},
+    {"id":"aus","title":"Australia","code":"AUS","group":"b",'ranking':62},
+    {"id":"jpn","title":"Japan","code":"JPN","group":"c",'ranking':46},
+    {"id":"kor","title":"South Korea","code":"KOR","group":"h",'ranking':57},
+    {"id":"irn","title":"Iran","code":"IRN","group":"f",'ranking':43}]
     ;
 
 function getMatches(group, matches, roundNum) {
@@ -137,6 +137,14 @@ function groupSorter(group) {
     };
     orderedList = orderedList.sort(function (a,b) {
 //        console.log('in points');
+        if (a.matches.length === 0 && b.matches.length === 0) {
+            if(a.ranking > b.ranking) {
+                return -1;
+            }
+            else {
+                return 1;
+            };
+        };
         if (a.matches.length != b.matches.length) {
             if (a.matches.length > b.matches.length) {
                 return -1;
@@ -335,7 +343,8 @@ function getGroup(groupLetter) {
     for(j=0;j<teams.length;j++) {
         if(groupLetter === teams[j].group) {
             group[teams[j].id] = {matches:[],points:0,place:null,ranks:[],
-                                  goals:0,goalDiff:0,id:teams[j].id};
+                                  goals:0,goalDiff:0,id:teams[j].id,
+                                  ranking:teams[j].ranking};
 //            console.log('getGroup ' + groupLetter + ':' + teams[j].id);
         };
     };
@@ -427,6 +436,8 @@ var theChart = {
         }
       ]
 };
+
+
 for(i=0;i<7;i++) {
     theChart['scale-x']['labels'].push('Match ' + (i+1));
     theChart['scale-x']['values'].push('Match ' + (i+1));
@@ -446,10 +457,12 @@ for(key in groupDict) {
         bigGroupDict[bigGroupKey] = groupDict[key][bigGroupKey];
         theChart['series'].push({
                                 'text':bigGroupKey,
-                                'ranks':[]
+                                'ranks':[],
+                                'rank':bigGroupDict[bigGroupKey]['ranking']
                                });
     };
 };
+
 for(key in groupDict) {
     groupDict[key] = getGroup(key);
 /*    for(bigGroupKey in groupDict[key]) {

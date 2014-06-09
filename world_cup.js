@@ -397,9 +397,16 @@ function groupChart(group, theChart) {
     for(groupKey in group) {
         for(i=0;i<theChart['series'].length;i++) {
             if(theChart['series'][i]['text'] === groupKey) {
-                for(j=0;j<7;j++) {
-                    theChart['series'][i]['ranks'].push(group[groupKey]['ranks'][j]);
+                for(z=0;z<teams.length;z++) {
+                    if(groupKey === teams[z]['id']) {
+                        theChart['series'][i]['text'] = teams[z]['title'];
+                    };
                 };
+                for(j=0;j<7;j++) {
+                     theChart['series'][i]['ranks'].push(group[groupKey]['ranks'][j]);
+                     
+                };
+            theChart['series'][i]['rank']= group[groupKey]['ranks'][6];
             };
         };
     };
@@ -426,7 +433,7 @@ var theChart = {
         //'color-type': 'palette',
         //'palette': ['#FAFA05', ,'#019406', '#FA0505', '#0032FA'],
         //'palette': ['yellow', 'green', 'grey', 'red'],
-        'style': {'item-flow': {'color': 'black'}, 'item-overall': {'color': 'black'}}
+        'style': {'item-flow': {'color': 'black'}, 'item-overall': {'color': 'black'}, 'label-overall':{'text':'Final Ranking'}}
         },
       'images': [
         {
@@ -442,6 +449,7 @@ for(i=0;i<7;i++) {
     theChart['scale-x']['labels'].push('Match ' + (i+1));
     theChart['scale-x']['values'].push('Match ' + (i+1));
 };
+var chartDict = {};
 var group;
 var groupDict = {'a':null,'b':null,'c':null,'d':null,
                  'e':null,'f':null,'g':null,'h':null};
@@ -458,7 +466,7 @@ for(key in groupDict) {
         theChart['series'].push({
                                 'text':bigGroupKey,
                                 'ranks':[],
-                                'rank':bigGroupDict[bigGroupKey]['ranking']
+                                'rank':0
                                });
     };
 };
@@ -481,9 +489,12 @@ for(key in groupDict) {
     matches = matchSimulator(matches, 33, 48);
     groupDict[key] = refreshData(groupDict[key], matches, '3');
     groupDict[key] = groupSorter(groupDict[key]);
+/*
     console.log(JSON.stringify(groupDict[key]));
     document.writeln('Group ' + key + '<br>');
     writeGroup(groupDict[key]);
+    chartDict[key] = groupChart(groupDict[key], theChart);
+*/
     matches = roundFourMatches(groupDict[key], matches, key);
 };
 matches = matchSimulator(matches, 49, 56);
@@ -510,7 +521,7 @@ bigGroupDict = groupSorter(bigGroupDict);
 bigGroupDict = sortFinal(bigGroupDict, matches);
 theChart = groupChart(bigGroupDict, theChart);
 console.log(JSON.stringify(theChart));
-
+/*
 for(key in bigGroupDict){
     document.writeln(key +' finished in place '+ bigGroupDict[key]['place']+'<br>');
 };
@@ -519,16 +530,17 @@ for(i=0;i<matches.length;i++) {
 };
 
 document.writeln(JSON.stringify(theChart));
-
+*/
 
 window.onload=function() {
-
-  zingchart.render({
-    id: 'theChart',
-    height: 450,
-  
-    data: theChart
-  })
+//  for(key in chartDict) {
+      zingchart.render({
+        id: 'theChart',
+        height: 1000,
+        data:theChart
+//        data: chartDict[key]
+      })
+//  };
 };
 
 console.log('bullshit');

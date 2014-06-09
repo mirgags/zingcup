@@ -105,18 +105,22 @@ function sortFinal(group, matches) {
         if(group[sortFinalKey]['matches'].length === 7) {
             if(sortFinalKey in matches[62]) {
                 if(pointCounter(group[sortFinalKey]['matches'][6])===3) {
-                    group[sortFinalKey]['place'][6] = 3;
+                    group[sortFinalKey]['ranks'][6] = 3;
+                    group[sortFinalKey]['place'] = 3;
                 }
                 else {
-                    group[sortFinalKey]['place'][6] = 4;
+                    group[sortFinalKey]['ranks'][6] = 4;
+                    group[sortFinalKey]['place'] = 4;
                 };
             };
             if(sortFinalKey in matches[63]) {
                 if(pointCounter(group[sortFinalKey]['matches'][6])===3) {
-                    group[sortFinalKey]['place'][6] = 1;
+                    group[sortFinalKey]['ranks'][6] = 1;
+                    group[sortFinalKey]['place'] = 1;
                 }
                 else {
-                    group[sortFinalKey]['place'][6] = 2;
+                    group[sortFinalKey]['ranks'][6] = 2;
+                    group[sortFinalKey]['place'] = 2;
                 };
             };
         };
@@ -196,7 +200,7 @@ function groupSorter(group) {
     for(i=0;i<orderedList.length;i++) {
         console.log(orderedList[i].id);
         group[orderedList[i].id]['place'] = i + 1;
-        group[orderedList[i].id]['rank'].push(i + 1);
+        group[orderedList[i].id]['ranks'].push(i + 1);
     };
     return group;
 };
@@ -330,7 +334,7 @@ function getGroup(groupLetter) {
     var groupLetter = groupLetter;
     for(j=0;j<teams.length;j++) {
         if(groupLetter === teams[j].group) {
-            group[teams[j].id] = {matches:[],points:0,place:null,rank:[],
+            group[teams[j].id] = {matches:[],points:0,place:null,ranks:[],
                                   goals:0,goalDiff:0,id:teams[j].id};
 //            console.log('getGroup ' + groupLetter + ':' + teams[j].id);
         };
@@ -385,7 +389,7 @@ function groupChart(group, theChart) {
         for(i=0;i<theChart['series'].length;i++) {
             if(theChart['series'][i]['text'] === groupKey) {
                 for(j=0;j<7;j++) {
-                    theChart['series'][i]['rank'].push(group[groupKey]['rank'][j]);
+                    theChart['series'][i]['ranks'].push(group[groupKey]['ranks'][j]);
                 };
             };
         };
@@ -410,9 +414,9 @@ var theChart = {
       },
       'series': [],
       'options': {
-        'color-type': 'palette',
+        //'color-type': 'palette',
         //'palette': ['#FAFA05', ,'#019406', '#FA0505', '#0032FA'],
-        'palette': ['yellow', 'green', 'grey', 'red'],
+        //'palette': ['yellow', 'green', 'grey', 'red'],
         'style': {'item-flow': {'color': 'black'}, 'item-overall': {'color': 'black'}}
         },
       'images': [
@@ -423,7 +427,7 @@ var theChart = {
         }
       ]
 };
-for(i=0;i<=7;i++) {
+for(i=0;i<7;i++) {
     theChart['scale-x']['labels'].push('Match ' + (i+1));
     theChart['scale-x']['values'].push('Match ' + (i+1));
 };
@@ -436,16 +440,25 @@ for(i=0;i<48;i++) {
         matches[key] = 0;
     };
 };
-
 for(key in groupDict) {
     groupDict[key] = getGroup(key);
     for(bigGroupKey in groupDict[key]) {
         bigGroupDict[bigGroupKey] = groupDict[key][bigGroupKey];
         theChart['series'].push({
                                 'text':bigGroupKey,
-                                'rank':[]
+                                'ranks':[]
                                });
     };
+};
+for(key in groupDict) {
+    groupDict[key] = getGroup(key);
+/*    for(bigGroupKey in groupDict[key]) {
+        bigGroupDict[bigGroupKey] = groupDict[key][bigGroupKey];
+        theChart['series'].push({
+                                'text':bigGroupKey,
+                                'rank':[]
+                               });
+    };*/
     matches = matchSimulator(matches, 1, 16);
     groupDict[key] = refreshData(groupDict[key], matches, '1');
     groupDict[key] = groupSorter(groupDict[key]);
@@ -461,6 +474,12 @@ for(key in groupDict) {
     matches = roundFourMatches(groupDict[key], matches, key);
 };
 matches = matchSimulator(matches, 49, 56);
+bigGroupDict = refreshData(bigGroupDict, matches, '1');
+bigGroupDict = groupSorter(bigGroupDict);
+bigGroupDict = refreshData(bigGroupDict, matches, '2');
+bigGroupDict = groupSorter(bigGroupDict);
+bigGroupDict = refreshData(bigGroupDict, matches, '3');
+bigGroupDict = groupSorter(bigGroupDict);
 bigGroupDict = refreshData(bigGroupDict, matches, '4');
 bigGroupDict = groupSorter(bigGroupDict);
 matches = knockoutMatches(bigGroupDict, matches, 5);
@@ -477,8 +496,7 @@ bigGroupDict = refreshData(bigGroupDict, matches, '7');
 bigGroupDict = groupSorter(bigGroupDict);
 bigGroupDict = sortFinal(bigGroupDict, matches);
 theChart = groupChart(bigGroupDict, theChart);
-
-//console.log(JSON.stringify(groupDict));
+console.log(JSON.stringify(theChart));
 
 for(key in bigGroupDict){
     document.writeln(key +' finished in place '+ bigGroupDict[key]['place']+'<br>');
@@ -490,7 +508,6 @@ for(i=0;i<matches.length;i++) {
 document.writeln(JSON.stringify(theChart));
 
 
-/*
 window.onload=function() {
 
   zingchart.render({
@@ -500,4 +517,5 @@ window.onload=function() {
     data: theChart
   })
 };
-*/
+
+console.log('bullshit');

@@ -351,6 +351,23 @@ function getGroup(groupLetter) {
     return group;
 };
 
+function getFifaOrder(group) {
+    var group = group;
+    var orderedList = [];
+    for(y=0;y<group.length;y++) {
+        orderedList.push(group[y]);
+    };
+    orderedList = orderedList.sort(function(a,b) {
+        if(a.ranking > b.ranking) {
+            return 1;
+        }
+        else {
+            return -1;
+        };
+    });
+    return orderedList;
+};
+
 var matches = [{"bra":3,"cro":1},{"cmr":0,"mex":0},{"ned":2,"esp":0},
                {"chi":2,"aus":0},{"gre":0,"col":0},{"crc":1,"uru":1},
                {"ita":1,"eng":0},{"civ":3,"jpn":2},{"sui":2,"ecu":2},
@@ -399,14 +416,20 @@ function groupChart(group, theChart) {
             if(theChart['series'][i]['text'] === groupKey) {
                 for(z=0;z<teams.length;z++) {
                     if(groupKey === teams[z]['id']) {
-                        theChart['series'][i]['text'] = teams[z]['title'];
+                        theChart['series'][i]['text'] = teams[z]['title'] +                            ' (' + teams[z]['ranking'] + ')';
                     };
                 };
                 for(j=0;j<7;j++) {
                      theChart['series'][i]['ranks'].push(group[groupKey]['ranks'][j]);
                      
                 };
-            theChart['series'][i]['rank']= group[groupKey]['ranks'][6];
+                for(m=0;m<group[groupKey]['matches'];m++) {
+                    theChart['series'][i]['data-matches'].push(groupKey +
+                        group[groupKey]['matches'][m]['goalsFor'] + ':' +
+                        group[groupKey]['matches'][m]['goalsAgainst']+' '+
+                        group[groupKey]['matches'][m]['opponent'] );
+                };
+                theChart['series'][i]['tooltip']['text']='%data-matches';
             };
         };
     };
@@ -425,30 +448,35 @@ for(i=0;i<matches.length;i++) {
 var theChart = {
       'type': 'rankflow',
       'scale-x': {
-        'labels': [],
-        'values': []
+        'labels': ['Group Match 1','Group Match 2','Group Match 3',
+                   'Round of 16', 'Quarterfinal', 'Semifinal','Final'],
+        'values': ['Group Match 1','Group Match 2','Group Match 3',
+                   'Round of 16', 'Quarterfinal', 'Semifinal','Final']
       },
       'series': [],
       'options': {
         //'color-type': 'palette',
         //'palette': ['#FAFA05', ,'#019406', '#FA0505', '#0032FA'],
         //'palette': ['yellow', 'green', 'grey', 'red'],
-        'style': {'item-flow': {'color': 'black'}, 'item-overall': {'color': 'black'}, 'label-overall':{'text':'Final Ranking'}}
+        'style': {'item-flow': {'color': 'black'}, 'item-overall': {'color': 'black'}, 'label-overall':{'text':'Ranked by FIFA World Ranking'}}
         },
       'images': [
+/*
         {
           'src': './us.png',
           'x': '100px',
           'y': '360px'
         }
+*/
       ]
 };
 
-
+/*
 for(i=0;i<7;i++) {
     theChart['scale-x']['labels'].push('Match ' + (i+1));
     theChart['scale-x']['values'].push('Match ' + (i+1));
 };
+*/
 var chartDict = {};
 var group;
 var groupDict = {'a':null,'b':null,'c':null,'d':null,
@@ -459,15 +487,22 @@ for(i=0;i<48;i++) {
         matches[key] = 0;
     };
 };
+
+var fifaList = getFifaOrder(teams);
+for(i=0;i<fifaList.length;i++) {
+    theChart['series'].push({
+                            'text':fifaList[i].id,
+                            'ranks':[],
+                            'data-matches':[],
+                            'tooltip':{},
+                            'rank':i+1
+                            });
+};
+
 for(key in groupDict) {
     groupDict[key] = getGroup(key);
     for(bigGroupKey in groupDict[key]) {
         bigGroupDict[bigGroupKey] = groupDict[key][bigGroupKey];
-        theChart['series'].push({
-                                'text':bigGroupKey,
-                                'ranks':[],
-                                'rank':0
-                               });
     };
 };
 

@@ -1,36 +1,36 @@
 var teams = [
-    {"id":"gre","title":"Greece","code":"GRE","group":"c",'ranking':12},
-    {"id":"rus","title":"Russia","code":"RUS","group":"h",'ranking':19},
-    {"id":"ned","title":"Netherlands","code":"NED","group":"b",'ranking':15},
-    {"id":"ger","title":"Germany","code":"GER","group":"g",'ranking':2},
-    {"id":"por","title":"Portugal","code":"POR","group":"g",'ranking':4},
-    {"id":"esp","title":"Spain","code":"ESP","group":"b",'ranking':1},
-    {"id":"ita","title":"Italy","code":"ITA","group":"d",'ranking':9},
-    {"id":"cro","title":"Croatia","code":"CRO","group":"a",'ranking':18},
-    {"id":"fra","title":"France","code":"FRA","group":"e",'ranking':17},
-    {"id":"eng","title":"England","code":"ENG","group":"d",'ranking':10},
-    {"id":"sui","title":"Switzerland","code":"SUI","group":"e",'ranking':6},
-    {"id":"bel","title":"Belgium","code":"BEL","group":"h",'ranking':11},
-    {"id":"bih","title":"Bosnia-Herzegovina","code":"BIH","group":"f",'ranking':21},
-    {"id":"alg","title":"Algeria","code":"ALG","group":"h",'ranking':22},
-    {"id":"civ","title":"C\u00f4te d'Ivoire","code":"CIV","group":"c",'ranking':23},
-    {"id":"gha","title":"Ghana","code":"GHA","group":"g",'ranking':37},
-    {"id":"cmr","title":"Cameroon","code":"CMR","group":"a",'ranking':56},
-    {"id":"nga","title":"Nigeria","code":"NGA","group":"f",'ranking':44},
-    {"id":"mex","title":"Mexico","code":"MEX","group":"a",'ranking':20},
-    {"id":"usa","title":"United States","code":"USA","group":"g",'ranking':13},
-    {"id":"hon","title":"Honduras","code":"HON","group":"e",'ranking':33},
-    {"id":"crc","title":"Costa Rica","code":"CRC","group":"d",'ranking':28},
-    {"id":"arg","title":"Argentina","code":"ARG","group":"f",'ranking':5},
-    {"id":"bra","title":"Brazil","code":"BRA","group":"a",'ranking':3},
-    {"id":"chi","title":"Chile","code":"CHI","group":"b",'ranking':14},
-    {"id":"uru","title":"Uruguay","code":"URU","group":"d",'ranking':7},
-    {"id":"col","title":"Colombia","code":"COL","group":"c",'ranking':8},
-    {"id":"ecu","title":"Ecuador","code":"ECU","group":"e",'ranking':26},
-    {"id":"aus","title":"Australia","code":"AUS","group":"b",'ranking':62},
-    {"id":"jpn","title":"Japan","code":"JPN","group":"c",'ranking':46},
-    {"id":"kor","title":"South Korea","code":"KOR","group":"h",'ranking':57},
-    {"id":"irn","title":"Iran","code":"IRN","group":"f",'ranking':43}]
+    {"id":"gre","title":"Greece","code":"GRE","group":"c",'ranking':12,'color1':'#000000','color2':'#5499dd','color3':'#ffffff'},
+    {"id":"rus","title":"Russia","code":"RUS","group":"h",'ranking':19,'color1':'#ffffff','color2':'#b13823','color3':'#4365b1'},
+    {"id":"ned","title":"Netherlands","code":"NED","group":"b",'ranking':15,'color1':'#000000','color2':'#de6200','color3':'#ffffff'},
+    {"id":"ger","title":"Germany","code":"GER","group":"g",'ranking':2,'color1':'#b13925','color2':'#f3cd00','color3':'#ffffff'},
+    {"id":"por","title":"Portugal","code":"POR","group":"g",'ranking':4,'color1':'#5f9a4a','color2':'#b13925','color3':'#ffffff'},
+    {"id":"esp","title":"Spain","code":"ESP","group":"b",'ranking':1,'color1':'#f4ed1b','color2':'#bf1f1e','color3':'#ffffff'},
+    {"id":"ita","title":"Italy","code":"ITA","group":"d",'ranking':9,'color1':'#000000','color2':'#5f9a4a','color3':'#b13925'},
+    {"id":"cro","title":"Croatia","code":"CRO","group":"a",'ranking':18,'color1':'#000000','color2':'#ce1d1c','color3':'#2e3c8e'},
+    {"id":"fra","title":"France","code":"FRA","group":"e",'ranking':17,'color1':'#000000','color2':'#b13925','color3':'#2e3c8e'},
+    {"id":"eng","title":"England","code":"ENG","group":"d",'ranking':10,'color1':'#000000','color2':'b13925','color3':'#ffffff'},
+    {"id":"sui","title":"Switzerland","code":"SUI","group":"e",'ranking':6,'color1':'#000000','color2':'#b13925','color3':'#ffffff'},
+    {"id":"bel","title":"Belgium","code":"BEL","group":"h",'ranking':11,'color1':'#f3cd00','color2':'#b13925','color3':'#ffffff'},
+    {"id":"bih","title":"Bosnia-Herzegovina","code":"BIH","group":"f",'ranking':21,'color1':'#000000','color2':'#2d2c75','color3':'#ffffff'},
+    {"id":"alg","title":"Algeria","code":"ALG","group":"h",'ranking':22,'color1':'#000000','color2':'#5f9a4a','color3':'#b13925'},
+    {"id":"civ","title":"C\u00f4te d'Ivoire","code":"CIV","group":"c",'ranking':23,'color1':'#000000','color2':'#d8661a','color3':'#5f9a4a'},
+    {"id":"gha","title":"Ghana","code":"GHA","group":"g",'ranking':37,'color1':'#f3cc00','color2':'#5e9911','color3':'#b23500'},
+    {"id":"cmr","title":"Cameroon","code":"CMR","group":"a",'ranking':56,'color1':'#f3cc00','color2':'#5e9911','color3':'#b23500'},
+    {"id":"nga","title":"Nigeria","code":"NGA","group":"f",'ranking':44,'color1':'#000000','color2':'#4d8947','color3':'#ffffff'},
+    {"id":"mex","title":"Mexico","code":"MEX","group":"a",'ranking':20,'color1':'#000000','color2':'#ce1d1c','color3':'#539549},
+    {"id":"usa","title":"United States","code":"USA","group":"g",'ranking':13,'color1':'#000000','color2':'#ce1d1c','color3':'#2f3391'},
+    {"id":"hon","title":"Honduras","code":"HON","group":"e",'ranking':33,'color1':'#000000','color2':'#4365b1','color3':'#ffffff'},
+    {"id":"crc","title":"Costa Rica","code":"CRC","group":"d",'ranking':28,'color1':,'color2':,'color3':},
+    {"id":"arg","title":"Argentina","code":"ARG","group":"f",'ranking':5,'color1':,'color2':,'color3':},
+    {"id":"bra","title":"Brazil","code":"BRA","group":"a",'ranking':3,'color1':,'color2':,'color3':},
+    {"id":"chi","title":"Chile","code":"CHI","group":"b",'ranking':14,'color1':,'color2':,'color3':},
+    {"id":"uru","title":"Uruguay","code":"URU","group":"d",'ranking':7,'color1':,'color2':,'color3':},
+    {"id":"col","title":"Colombia","code":"COL","group":"c",'ranking':8,'color1':,'color2':,'color3':},
+    {"id":"ecu","title":"Ecuador","code":"ECU","group":"e",'ranking':26,'color1':,'color2':,'color3':},
+    {"id":"aus","title":"Australia","code":"AUS","group":"b",'ranking':62,'color1':,'color2':,'color3':},
+    {"id":"jpn","title":"Japan","code":"JPN","group":"c",'ranking':46,'color1':,'color2':,'color3':},
+    {"id":"kor","title":"South Korea","code":"KOR","group":"h",'ranking':57,'color1':,'color2':,'color3':},
+    {"id":"irn","title":"Iran","code":"IRN","group":"f",'ranking':43,'color1':,'color2':,'color3':}]
     ;
 
 function getMatches(group, matches, roundNum) {
@@ -416,7 +416,12 @@ function groupChart(group, theChart) {
             if(theChart['series'][i]['text'] === groupKey) {
                 for(z=0;z<teams.length;z++) {
                     if(groupKey === teams[z]['id']) {
-                        theChart['series'][i]['text'] = teams[z]['title'] +                            ' (' + teams[z]['ranking'] + ')';
+                        theChart['series'][i]['text'] = teams[z]['title'] +
+                            ' (' + teams[z]['ranking'] + ')';
+                        theChart['series'][i]['border-color'] = teams[z]['color1']
+
+                        theChart['series'][i]['border-color'] = teams[z]['color2']
+                        theChart['series'][i]['border-width'] = 2;
                     };
                 };
                 for(j=0;j<7;j++) {
@@ -455,11 +460,17 @@ var theChart = {
       },
       'series': [],
       'options': {
-        //'color-type': 'palette',
-        //'palette': ['#FAFA05', ,'#019406', '#FA0505', '#0032FA'],
-        //'palette': ['yellow', 'green', 'grey', 'red'],
-        'style': {'item-flow': {'color': 'black'}, 'item-overall': {'color': 'black'}, 'label-overall':{'text':'Ranked by FIFA World Ranking'}}
+        'color-type': 'palette',
+        'palette': [],
+        'style': {
+            'item-flow': {'color': 'black'},
+            'item-overall': {'color': 'black'},
+            'label-overall':{'text':'FIFA World Ranking\n(Rank)'}}
         },
+      'plotarea':{
+        'background-image':'./maracana.png',
+        'background-fit':'xy'
+      },
       'images': [
 /*
         {
@@ -572,6 +583,7 @@ window.onload=function() {
       zingchart.render({
         id: 'theChart',
         height: 1000,
+        width: 1500,
         data:theChart
 //        data: chartDict[key]
       })

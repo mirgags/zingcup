@@ -1,36 +1,36 @@
 var teams = [
     {"id":"gre","title":"Greece","code":"GRE","group":"c",'ranking':12,'color1':'#FFFFFF','color2':'#5499DD','color3':'#FFFFFF'},
-    {"id":"rus","title":"Russia","code":"RUS","group":"h",'ranking':19,'color1':'#FFFFFF','color2':'#B13823','color3':'#4365B1'},
-    {"id":"ned","title":"Netherlands","code":"NED","group":"b",'ranking':15,'color1':'#FFFFFF','color2':'#DE6200','color3':'#FFFFFF'},
+    {"id":"rus","title":"Russia","code":"RUS","group":"h",'ranking':19,'color1':'#4365B1','color2':'#B13823','color3':'#FFFFFF'},
+    {"id":"ned","title":"Netherlands","code":"NED","group":"b",'ranking':15,'color1':'#DE6200','color2':'#FFFFFF','color3':'#FFFFFF'},
     {"id":"ger","title":"Germany","code":"GER","group":"g",'ranking':2,'color1':'#B13925','color2':'#F3CD00','color3':'#FFFFFF'},
     {"id":"por","title":"Portugal","code":"POR","group":"g",'ranking':4,'color1':'#5F9A4A','color2':'#B13925','color3':'#FFFFFF'},
     {"id":"esp","title":"Spain","code":"ESP","group":"b",'ranking':1,'color1':'#F4ED1B','color2':'#BF1F1E','color3':'#FFFFFF'},
-    {"id":"ita","title":"Italy","code":"ITA","group":"d",'ranking':9,'color1':'#FFFFFF','color2':'#5F9A4A','color3':'#B13925'},
-    {"id":"cro","title":"Croatia","code":"CRO","group":"a",'ranking':18,'color1':'#FFFFFF','color2':'#CE1D1C','color3':'#2E3C8E'},
-    {"id":"fra","title":"France","code":"FRA","group":"e",'ranking':17,'color1':'#FFFFFF','color2':'#B13925','color3':'#2E3C8E'},
+    {"id":"ita","title":"Italy","code":"ITA","group":"d",'ranking':9,'color1':'#B13925','color2':'#5F9A4A','color3':'#FFFFFF'},
+    {"id":"cro","title":"Croatia","code":"CRO","group":"a",'ranking':18,'color1':'#CE1D1C','color2':'#2E3C8E','color3':'#FFFFFF'},
+    {"id":"fra","title":"France","code":"FRA","group":"e",'ranking':17,'color1':'#FFFFFF','color2':'#B13925','color3':'#FFFFFF'},
     {"id":"eng","title":"England","code":"ENG","group":"d",'ranking':10,'color1':'#FFFFFF','color2':'#C21217','color3':'#FFFFFF'},
     {"id":"sui","title":"Switzerland","code":"SUI","group":"e",'ranking':6,'color1':'#FFFFFF','color2':'#B13925','color3':'#FFFFFF'},
     {"id":"bel","title":"Belgium","code":"BEL","group":"h",'ranking':11,'color1':'#F3CD00','color2':'#B13925','color3':'#FFFFFF'},
     {"id":"bih","title":"Bosnia-Herzegovina","code":"BIH","group":"f",'ranking':21,'color1':'#FFFFFF','color2':'#2D2C75','color3':'#FFFFFF'},
-    {"id":"alg","title":"Algeria","code":"ALG","group":"h",'ranking':22,'color1':'#FFFFFF','color2':'#5F9A4A','color3':'#B13925'},
-    {"id":"civ","title":"C\u00f4te d'Ivoire","code":"CIV","group":"c",'ranking':23,'color1':'#FFFFFF','color2':'#D8661A','color3':'#5F9A4A'},
+    {"id":"alg","title":"Algeria","code":"ALG","group":"h",'ranking':22,'color1':'#B13925','color2':'#5F9A4A','color3':'#FFFFFF'},
+    {"id":"civ","title":"C\u00f4te d'Ivoire","code":"CIV","group":"c",'ranking':23,'color1':'#5F9A4A','color2':'#D8661A','color3':'#FFFFFF'},
     {"id":"gha","title":"Ghana","code":"GHA","group":"g",'ranking':37,'color1':'#F3CC00','color2':'#5E9911','color3':'#B23500'},
     {"id":"cmr","title":"Cameroon","code":"CMR","group":"a",'ranking':56,'color1':'#F3CC00','color2':'#5E9911','color3':'#B23500'},
     {"id":"nga","title":"Nigeria","code":"NGA","group":"f",'ranking':44,'color1':'#FFFFFF','color2':'#4D8947','color3':'#FFFFFF'},
-    {"id":"mex","title":"Mexico","code":"MEX","group":"a",'ranking':20,'color1':'#FFFFFF','color2':'#CE1D1C','color3':'#539549'},
-    {"id":"usa","title":"United States","code":"USA","group":"g",'ranking':13,'color1':'#FFFFFF','color2':'#CE1D1C','color3':'#2F3391'},
+    {"id":"mex","title":"Mexico","code":"MEX","group":"a",'ranking':20,'color1':'#539549','color2':'#CE1D1C','color3':'#FFFFFF'},
+    {"id":"usa","title":"United States","code":"USA","group":"g",'ranking':13,'color1':'#CE1D1C','color2':'#2F3391','color3':'#FFFFFF'},
     {"id":"hon","title":"Honduras","code":"HON","group":"e",'ranking':33,'color1':'#FFFFFF','color2':'#4365B1','color3':'#FFFFFF'},
-    {"id":"crc","title":"Costa Rica","code":"CRC","group":"d",'ranking':28,'color1':'#FFFFFF','color2':'##E91E1C','color3':'#3E3C96'},
+    {"id":"crc","title":"Costa Rica","code":"CRC","group":"d",'ranking':28,'color1':'#4034df'/*'#3E3C96'*/,'color2':'#E91E1C','color3':'#FFFFFF'},
     {"id":"arg","title":"Argentina","code":"ARG","group":"f",'ranking':5,'color1':'#FFFFFF','color2':'#2386C3','color3':'#FFFFFF'},
     {"id":"bra","title":"Brazil","code":"BRA","group":"a",'ranking':3,'color1':'#FFC400','color2':'#2D8A31','color3':'#162C7F'},
-    {"id":"chi","title":"Chile","code":"CHI","group":"b",'ranking':14,'color1':'#FFFFFF','color2':'#BF281E','color3':'#162C7F'},
-    {"id":"uru","title":"Uruguay","code":"URU","group":"d",'ranking':7,'color1':'#FFFFFF','color2':'#8FBBE7','color3':'#FFFFFF'},
+    {"id":"chi","title":"Chile","code":"CHI","group":"b",'ranking':14,'color1':'#4034df'/*'#162C7F'*/,'color2':'#BF281E','color3':'#FFFFFF'},
+    {"id":"uru","title":"Uruguay","code":"URU","group":"d",'ranking':7,'color1':'#8FBBE7','color2':'#FFFFFF','color3':'#FFFFFF'},
     {"id":"col","title":"Colombia","code":"COL","group":"c",'ranking':8,'color1':'#FFC400','color2':'#BF281E','color3':'#162C7F'},
     {"id":"ecu","title":"Ecuador","code":"ECU","group":"e",'ranking':26,'color1':'#FFC400','color2':'#BF281E','color3':'#162C7F'},
-    {"id":"aus","title":"Australia","code":"AUS","group":"b",'ranking':62,'color1':'#FFFFFF','color2':'#C12326','color3':'#1A1A59'},
+    {"id":"aus","title":"Australia","code":"AUS","group":"b",'ranking':62,'color1':'#4034df'/*'#162C7F'*/,'color2':'#C12326','color3':'#FFFFFF'},
     {"id":"jpn","title":"Japan","code":"JPN","group":"c",'ranking':46,'color1':'#FFFFFF','color2':'#D3111C','color3':'#FFFFFF'},
-    {"id":"kor","title":"South Korea","code":"KOR","group":"h",'ranking':57,'color1':'#FFFFFF','color2':'#BF281E','color3':'#162C7F'},
-    {"id":"irn","title":"Iran","code":"IRN","group":"f",'ranking':43,'color1':'#FFFFFF','color2':'#BF281E','color3':'#2D8A31'}]
+    {"id":"kor","title":"South Korea","code":"KOR","group":"h",'ranking':57,'color1':'#BF281E','color2':'#162C7F','color3':'#FFFFFF'},
+    {"id":"irn","title":"Iran","code":"IRN","group":"f",'ranking':43,'color1':'#2D8A31','color2':'#BF281E','color3':'#FFFFFF'}]
     ;
 
 function getMatches(group, matches, roundNum) {
@@ -468,8 +468,15 @@ var theChart = {
             'label-overall':{'text':'FIFA World Ranking\n(Rank)'}}
         },
       'plotarea':{
-        'background-image':'./maracana.png',
-        'background-fit':'xy'
+//        'background-image':'./maracana.png',
+        'background-position': '0 0',
+        'background-color-1':'#FFC400',
+        'background-color-2':'#2D8A31',
+        'background-fit':'xy',
+        'offset-y':-200,
+        'height':1400,
+        'offset-x':-100,
+        'width':1700
       },
       'images': [
 /*
@@ -508,6 +515,12 @@ for(i=0;i<fifaList.length;i++) {
                             'tooltip':{},
                             'rank':i+1
     });
+    theChart['options']['palette'].push(fifaList[i]['color1']);
+/*
+                            'border-color':teams[z]['color2'],
+                            'border-width':3});
+*/
+
 };
 
 for(key in groupDict) {
